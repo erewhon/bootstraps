@@ -66,10 +66,21 @@ config checkout
 
 echo "Setting up NodeJS"
 
-mkdir -p ~/.local/node 
+sudo apt install gcc g++ make -y
 
-tar xJvf ~/Downloads/node-v10.9.0-linux-x64.tar.xz -C ~/.local/node
-ln -sv ~/.local/node/node-v10.9.0-linux-x64 ~/.local/node/current
+# mkdir -p ~/.local/node 
+# tar xJvf ~/Downloads/node-v10.9.0-linux-x64.tar.xz -C ~/.local/node
+# ln -sv ~/.local/node/node-v10.9.0-linux-x64 ~/.local/node/current
+curl -sL https://deb.nodesource.com/setup_10.x | sudo -E bash -
+sudo apt-get install -y nodejs
+
+
+echo "installing yarn"
+## To install the Yarn package manager, run:
+curl -sL https://dl.yarnpkg.com/debian/pubkey.gpg | sudo apt-key add -
+echo "deb https://dl.yarnpkg.com/debian/ stable main" | sudo tee /etc/apt/sources.list.d/yarn.list
+sudo apt-get update && sudo apt-get install yarn -y
+
 
 
 
@@ -148,6 +159,7 @@ cd nerd-fonts
 ###
 ### OpenSSH
 ###
+sudo apt install libssl-dev
 cd ~/src
 wget https://cloudflare.cdn.openbsd.org/pub/OpenBSD/OpenSSH/portable/openssh-7.7p1.tar.gz
 cd openssh-7.7p1
@@ -161,7 +173,7 @@ sudo stow openssh
 ###
 ### tmux
 ###
-sudo apt install -y libevent-devel
+sudo apt install -y libevent-dev
 
 cd ~/src
 # or download and extract
