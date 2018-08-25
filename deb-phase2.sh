@@ -145,3 +145,31 @@ cd nerd-fonts
 ./install.sh Meslo
 ./install.sh FiraCode
 
+###
+### OpenSSH
+###
+cd ~/src
+wget https://cloudflare.cdn.openbsd.org/pub/OpenBSD/OpenSSH/portable/openssh-7.7p1.tar.gz
+cd openssh-7.7p1
+
+./configure 
+make 
+make install prefix=/usr/local/stow/openssh
+cd /usr/local/stow
+sudo stow openssh
+
+###
+### tmux
+###
+sudo apt install -y libevent-devel
+
+cd ~/src
+# or download and extract
+git clone https://github.com/tmux/tmux.git
+cd tmux
+sh autogen.sh
+./configure
+make
+make install prefix=/usr/local/stow/tmux
+cd /usr/local/stow
+sudo stow tmux
